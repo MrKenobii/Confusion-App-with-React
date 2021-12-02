@@ -5,18 +5,18 @@ import MenuComponent from "./components/MenuComponent";
 import { DISHES } from "./shared/dishes";
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
-    this.state={
-      dishes: DISHES
+    this.state = {
+      dishes: DISHES,
     };
   }
-  render(){
+  render() {
     return (
       <div>
         <Navbar dark color="primary">
-         {/* <Container>
+          {/* <Container>
             <Row>
               <Col xs="1" sm="1" md="1" lg="1" xl="1">
                   <NavbarBrand href="/">Ristorante Confusion</NavbarBrand>
@@ -24,14 +24,15 @@ class App extends Component {
             </Row>
           </Container>  */}
           <div className="container d-flex">
-              <NavbarBrand href="/" className="fw-bold">Ristorante Con Fusion</NavbarBrand>
-            </div>
+            <NavbarBrand href="/" className="fw-bold">
+              Ristorante Con Fusion
+            </NavbarBrand>
+          </div>
         </Navbar>
-        <MenuComponent dishes={this.state.dishes}/>
+        <MenuComponent dishes={this.state.dishes} />
       </div>
     );
   }
-  
-};
+}
 
 export default App;

@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import {
   Container,
-  Media,
   Row,
   Card,
   CardImg,
   CardImgOverlay,
-  CardText,
-  CardBody,
   CardTitle,
   Col,
 } from "reactstrap";
+import DishdetailComponent from "./DishdetailComponent";
 class MenuComponent extends Component {
   constructor(props) {
     super(props);
@@ -21,21 +19,7 @@ class MenuComponent extends Component {
   onDishSelect(dish) {
     this.setState({ selectedDish: dish });
   }
-  renderDish(dish) {
-    if (dish !== null) {
-      return (
-        <Card>
-          <CardImg width="100%" src={dish.image} alt={dish.name} />
-          <CardBody>
-            <CardTitle>{dish.name}</CardTitle>
-            <CardText>{dish.description}</CardText>
-          </CardBody>
-        </Card>
-      );
-    } else {
-      return <div></div>;
-    }
-  }
+  
   render() {
     const menu = this.props.dishes.map((dish) => {
       return (
@@ -52,7 +36,7 @@ class MenuComponent extends Component {
           <Card key={dish.id} onClick={() => this.onDishSelect(dish)}>
             <CardImg width="100%" src={dish.image} alt={dish.name} />
             <CardImgOverlay>
-              <CardTitle>{dish.name}</CardTitle>
+              <CardTitle className="fw-bold fs-4">{dish.name}</CardTitle>
             </CardImgOverlay>
           </Card>
         </Col>
@@ -61,10 +45,12 @@ class MenuComponent extends Component {
     return (
       <Container>
         <Row>{menu}</Row>
-        <Row>
-            {this.renderDish(this.state.selectedDish)}
-        </Row>
+        
+        <DishdetailComponent
+          selectedDish={this.state.selectedDish}> 
+        </DishdetailComponent>
       </Container>
+      
     );
   }
 }
