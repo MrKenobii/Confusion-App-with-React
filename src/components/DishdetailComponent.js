@@ -12,16 +12,24 @@ import {
 class DishdetailComponent extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      ...props,
+    };
   }
   renderComments(comments) {
-    if (comments !== null) {
+    if (comments != null) {
       const userComments = Object.entries(comments.comments).map((item) => {
         return (
           <div className="mb-4">
             <ul className="list-group">
               <li className="list-unstyled">{item[1].comment}</li>
               <li className="list-unstyled">
-                --{item[1].author} , {item[1].date}
+                --{item[1].author} ,{" "}
+                {new Intl.DateTimeFormat("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "2-digit",
+                }).format(new Date(Date.parse(item[1].date)))}
               </li>
             </ul>
           </div>
@@ -35,9 +43,8 @@ class DishdetailComponent extends Component {
       );
     }
   }
-
   renderDish(dish) {
-    if (dish !== null) {
+    if (dish != null) {
       return (
         <Col className="m-1" md="5">
           <Card key={dish.id}>
@@ -55,10 +62,12 @@ class DishdetailComponent extends Component {
   }
   render() {
     return (
-      <Row>
-        {this.renderDish(this.props.selectedDish)}
-        {this.renderComments(this.props.selectedDish)}
-      </Row>
+      <div className="container">
+        <Row>
+          {this.renderDish(this.props.dish)}
+          {this.renderComments(this.props.dish)}
+        </Row>
+      </div>
     );
   }
 }

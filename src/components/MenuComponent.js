@@ -33,7 +33,7 @@ class MenuComponent extends Component {
         //   </Media>
         // </Row>
         <Col className="m-1" md="5">
-          <Card key={dish.id} onClick={() => this.onDishSelect(dish)}>
+          <Card key={dish.id} onClick={() => this.props.onClick(dish.id)}>
             <CardImg width="100%" src={dish.image} alt={dish.name} />
             <CardImgOverlay>
               <CardTitle className="fw-bold fs-4">{dish.name}</CardTitle>
@@ -45,9 +45,8 @@ class MenuComponent extends Component {
     return (
       <Container>
         <Row>{menu}</Row>
-        
         <DishdetailComponent
-          selectedDish={this.state.selectedDish}> 
+          dish={this.state.selectedDish}> 
         </DishdetailComponent>
       </Container>
       
