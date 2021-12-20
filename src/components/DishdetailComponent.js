@@ -9,6 +9,7 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import CommentForm from "./CommentFormComponent";
 function RenderComments({ comments }) {
   if (comments !== null) {
     return (
@@ -30,6 +31,9 @@ function RenderComments({ comments }) {
               </li>
             );
           })}
+        </ul>
+        <ul>
+          <CommentForm />
         </ul>
       </div>
     );
@@ -59,7 +63,7 @@ const DishdetailComponent = (props) => {
     return (
       <div className="container">
         <div className="row">
-          <Breadcrumb >
+          <Breadcrumb>
             <BreadcrumbItem>
               <Link to="/menu">Menu</Link>
             </BreadcrumbItem>
